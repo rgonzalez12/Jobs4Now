@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_11_071511) do
+ActiveRecord::Schema.define(version: 2020_04_11_220432) do
 
   create_table "event_registrations", force: :cascade do |t|
     t.integer "user_id"
@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 2020_04_11_071511) do
   create_table "job_applications", force: :cascade do |t|
     t.integer "job_id"
     t.integer "user_id"
-    t.index ["job_id", "user_id"], name: "index_job_applications_on_job_id_and_user_id", unique: true
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -71,6 +70,8 @@ ActiveRecord::Schema.define(version: 2020_04_11_071511) do
     t.boolean "verified"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "resume"
+    t.text "cover_letter"
   end
 
   add_foreign_key "follows", "users", column: "followee_id"
