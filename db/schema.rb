@@ -10,6 +10,69 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2020_04_11_071511) do
 
+  create_table "event_registrations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "event_id"
+    t.index ["event_id", "user_id"], name: "index_event_registrations_on_event_id_and_user_id", unique: true
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.datetime "event_time"
+    t.string "name"
+    t.string "description"
+    t.string "agenda"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followee_id"
+  end
+
+  create_table "job_applications", force: :cascade do |t|
+    t.integer "job_id"
+    t.integer "user_id"
+    t.index ["job_id", "user_id"], name: "index_job_applications_on_job_id_and_user_id", unique: true
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.integer "user_id"
+    t.text "description"
+    t.text "requirements"
+    t.string "compensation"
+    t.string "duration"
+    t.string "schedule"
+    t.string "field_of_work"
+    t.string "contact_info"
+    t.boolean "completed", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.string "review_info"
+    t.integer "user_id"
+    t.integer "job_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.text "email"
+    t.string "password_digest"
+    t.string "phone_number"
+    t.string "address"
+    t.string "bio"
+    t.boolean "verified"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "follows", "users", column: "followee_id"
+  add_foreign_key "follows", "users", column: "follower_id"
 end
