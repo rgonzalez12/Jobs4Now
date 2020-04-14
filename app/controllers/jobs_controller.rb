@@ -6,11 +6,18 @@ class JobsController < ApplicationController
     end
 
     def create
-
+      @job = current_user.job.build(job_params)
+      if @job.save
+        redirect_to job_path(@job)
+        flash[:message] = "Job Created Successfully."
+      else
+        flash[:error] = "Unable to Post Job, Please Try Again."
+        render :new
+      end
     end
 
     def index
-
+      @job = Job.all
     end
 
     def edit
@@ -18,7 +25,15 @@ class JobsController < ApplicationController
     end
 
     def update
-
+      @job.update(job_params)
+    
+      if @job.update(job_prarams)
+        redirect_to job_path(@job)
+        flash[:message] = "Job Updated Successfully."
+      else
+        flash[:error] = "Unable to Update Job, Please Try Again."
+        render :edit
+      end
     end
 
     def submit_application

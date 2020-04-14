@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     end
 
     def index
-
+      @job = Job.all
     end
 
     def edit

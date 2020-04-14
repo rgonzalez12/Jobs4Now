@@ -5,9 +5,9 @@ class Follow < ApplicationRecord
     validate :follower_and_followee_are_different 
 
     def follower_and_followee_are_different
-        if follower_id == followee_id
-          errors.add(:followee_id, "User cannot follow themselves.")
-        end
+      if follower_id == followee_id
+        errors.add(:followee_id, "User cannot follow themselves.")
+      end
     end
 
 end
