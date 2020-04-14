@@ -1,1 +1,30 @@
-create form for edit and new actions for jobs
+<h1>Create Job</h1>
+
+<%= form_for @job do |f| %>
+  <%= f.label :first_name %>
+  <%= f.text_field :first_name %>
+  <br>
+  <br>
+  <%= f.label :last_name %>
+  <%= f.text_field :last_name %>
+   <br>
+   <br>
+   <%= f.label :email %>
+   <%= f.text_field :email %>
+  <br>
+  <br>
+   <%= f.label :password %>
+   <%= f.password_field :password %>
+<br>
+<br>
+   <%= f.label :phone_number %>
+   <%= f.text_field :phone_number %>
+<br>
+<br>
+   <%= f.label :address %>
+   <%= f.text_field :address %>
+<br>
+<br>
+  <%= f.submit %>
+
+<% end %>
