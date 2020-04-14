@@ -1,28 +1,28 @@
 <h1>Create Job</h1>
 
 <%= form_for @job do |f| %>
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
   <br>
   <br>
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name %>
+  <%= f.label :requirements %>
+  <%= f.text_field :requirements %>
    <br>
    <br>
-   <%= f.label :email %>
-   <%= f.text_field :email %>
+   <%= f.label :compensation %>
+   <%= f.text_field :compensation %>
   <br>
   <br>
-   <%= f.label :password %>
-   <%= f.password_field :password %>
+   <%= f.label :duration %>
+   <%= f.text_field :duration %>
 <br>
 <br>
-   <%= f.label :phone_number %>
-   <%= f.text_field :phone_number %>
+   <%= f.label :field_of_work %>
+   <%= f.text_field :field_of_work %>
 <br>
 <br>
-   <%= f.label :address %>
-   <%= f.text_field :address %>
+   <%= f.label :contact_info %>
+   <%= f.text_field :contact_info %>
 <br>
 <br>
   <%= f.submit %>
