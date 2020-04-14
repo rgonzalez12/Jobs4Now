@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_11_220432) do
+ActiveRecord::Schema.define(version: 2020_04_14_234252) do
 
   create_table "event_registrations", force: :cascade do |t|
     t.integer "user_id"
@@ -52,11 +52,22 @@ ActiveRecord::Schema.define(version: 2020_04_11_220432) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "mastery", force: :cascade do |t|
+    t.integer "skill_id"
+    t.integer "user_id"
+    t.integer "star_rating"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.integer "rating"
     t.string "review_info"
     t.integer "user_id"
     t.integer "job_id"
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "name"
+    t.string "field"
   end
 
   create_table "users", force: :cascade do |t|
