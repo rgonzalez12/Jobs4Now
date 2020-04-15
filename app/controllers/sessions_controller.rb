@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
     skip_before_action :verified, only: [:new, :create]
 
     def new
-      @user = User.new
     end
 
     def create
@@ -11,15 +10,14 @@ class SessionsController < ApplicationController
         session[:user_id] = user.id
         redirect_to user_path(user)
       else
-        flash[:message] = "Username or Password is incorrect, please try again."
+        flash[:error] = "Username or Password is incorrect, please try again."
         redirect_to "/login"
       end
-
     end
 
     def destroy
-      session.delete("user_id")
-      redirect_to root_path
+      session.clear
+      redirect_to '/'
     end
 
 end

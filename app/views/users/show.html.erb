@@ -1,3 +1,8 @@
 display user profile info, reviews left by others, jobs this user is currently hosting and events user is currently hosting.
 user can also see jobs they have applied for, jobs they are currently working on, events they are signed up and list of followers and who the user follows
 user can also see reviews they have left
+<br>
+<br>
+<h1>Welcome, <%= @user.first_name %>!</h1>
+
+<%= link_to "logout", logout_path, method: "delete" %>
