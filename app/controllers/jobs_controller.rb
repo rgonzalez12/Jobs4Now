@@ -8,8 +8,8 @@ class JobsController < ApplicationController
     def create
       @job = current_user.job.build(job_params)
       if @job.save
-        redirect_to job_path(@job)
         flash[:message] = "Job Created Successfully."
+        redirect_to job_path(@job)
       else
         flash[:error] = "Unable to Post Job, Please Try Again."
         render :new

@@ -8,8 +8,8 @@ class EventsController < ApplicationController
     def create
       @event = current_user.event.build(event_params)
       if @event.save
-        redirect_to event_path(@event)
         flash[:message] = "Event Created Successfully."
+        redirect_to event_path(@event)
       else
         flash[:error] = "Unable to Post Event, Please Try Again."
         render :new
@@ -25,11 +25,11 @@ class EventsController < ApplicationController
     end
 
     def update
-      @event.update(event_params)
+      @event = Event.find(params[:id])
     
       if @event.update(event_prarams)
-        redirect_to event_path(@event)
         flash[:message] = "Event Updated Successfully."
+        redirect_to event_path(@event)
       else
         flash[:error] = "Unable to Update Event, Please Try Again."
         render :edit
@@ -41,8 +41,7 @@ class EventsController < ApplicationController
     end
 
     def submit_registration
-      if params([:event_id]).present? && params([:user_id]).present?
-        EventRegistration.create({:event_id => params[:id], :user_id => event_params[:user_id]})
+      if params([:event_id]).present? && EventRegistration.create({:event_id => params[:event_id], :user_id => current_user.id})
         flash[:message] = "Successfuly Registered."
       else
         flash[:error] = "Unable to Submit Registration, Please Try Again."

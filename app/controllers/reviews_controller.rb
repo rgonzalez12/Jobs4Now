@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
     end
 
     def index
-
+      @review = Review.all
     end
 
     def update
@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
     private
 
     def review_params
-
+      params.require(:reviews).permit(:rating, :review_info, :user_id, :job_id)
     end
 
 end
