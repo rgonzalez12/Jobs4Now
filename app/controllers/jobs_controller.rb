@@ -25,11 +25,11 @@ class JobsController < ApplicationController
     end
 
     def update
-      @job.update(job_params)
+      @job = Job.find(params[:id])
     
-      if @job.update(job_prarams)
-        redirect_to job_path(@job)
+      if @job.update(job_params)
         flash[:message] = "Job Updated Successfully."
+        redirect_to job_path(@job)
       else
         flash[:error] = "Unable to Update Job, Please Try Again."
         render :edit
@@ -37,11 +37,11 @@ class JobsController < ApplicationController
     end
 
     def submit_application
-      if params([:job_id]).present? && params([:user_id]).present?
-        JobApplication.create({:job_id => params[:id], :user_id => job_params[:user_id]})
+      if params[:job_id].present? && JobApplication.create({:job_id => params[:job_id], :user_id => current_user.id})
         flash[:message] = "Successfuly Applied."
       else
         flash[:error] = "Unable to Submit Job Application, Please Try Again."
+        redirect_to :index
       end
     end
 
@@ -50,7 +50,7 @@ class JobsController < ApplicationController
     end
 
     def destroy
-      Job.destroy
+      Job.destroy!
     end
 
     private

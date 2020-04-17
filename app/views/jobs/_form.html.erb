@@ -1,30 +1,30 @@
 <h1>Create Job</h1>
 
-<%= form_for @job do |f| %>
+<%= form_for current_user, @job do |f| %>
   <%= f.label :description %>
   <%= f.text_field :description %>
   <br>
   <br>
   <%= f.label :requirements %>
   <%= f.text_field :requirements %>
-   <br>
-   <br>
-   <%= f.label :compensation %>
-   <%= f.text_field :compensation %>
   <br>
   <br>
-   <%= f.label :duration %>
-   <%= f.text_field :duration %>
-<br>
-<br>
-   <%= f.label :field_of_work %>
-   <%= f.text_field :field_of_work %>
-<br>
-<br>
-   <%= f.label :contact_info %>
-   <%= f.text_field :contact_info %>
-<br>
-<br>
+  <%= f.label :compensation %>
+  <%= f.text_field :compensation %>
+  <br>
+  <br>
+  <%= f.label :duration %>
+  <%= f.text_field :duration %>
+  <br>
+  <br>
+  <%= f.label :field_of_work %>
+  <%= f.text_field :field_of_work %>
+  <br>
+  <br>
+  <%= f.label :contact_info %>
+  <%= f.text_field :contact_info %>
+  <br>
+  <br>
   <%= f.submit %>
 
 <% end %>
