@@ -1,12 +1,12 @@
 class JobsController < ApplicationController
-  before_action :ensure_own_job, except: [:submit_application, :show, :index]
+  #before_action :ensure_own_job, except: [:submit_application, :show, :index]
 
     def new
       @job = Job.new
     end
 
     def create
-      @job = current_user.job.build(job_params)
+      @job = current_user.jobs.build(job_params)
       if @job.save
         flash[:message] = "Job Created Successfully."
         redirect_to job_path(@job)
@@ -50,17 +50,19 @@ class JobsController < ApplicationController
     end
 
     def destroy
-      Job.destroy!
+      @event = Event.find_by(id: params[:id])
+      @event.destroy
+      redirect_to user_path(current_user)
     end
 
     private
 
-    def ensure_own_job
-      current_user.id == params[:user_id].to_i && job.user_id == params[:user_id].to_i
-    end
+    #def ensure_own_job
+      #current_user.id == params[:user_id].to_i && job.user_id == params[:user_id].to_i
+    #end
 
     def job_params
-      params.require(:jobs).permit(:user_id, :description, :requirements, :compensation, :duration, :schedule, :field_of_work, :contact_info, :completed)
+      params.require(:job).permit(:user_id, :description, :requirements, :compensation, :duration, :schedule, :field_of_work, :contact_info)
     end
 
     #might be job vs. jobs

@@ -9,10 +9,12 @@ Rails.application.routes.draw do
   post '/submit_application/:job_id' => 'jobs#submit_application', as: 'submit_application'
   post '/submit_registration/:event_id' => 'events#submit_registration', as: 'submit_registration'
 
-  resources :users do
-    resources :jobs
-    resources :events
-  end
+  resources :users
+
+  resources :jobs
+
+  resources :events
+
 
   match '/auth/github/callback', to: 'sessions#create', via: [:get, :post]
 end

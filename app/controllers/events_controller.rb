@@ -1,12 +1,12 @@
 class EventsController < ApplicationController
-  before_action :ensure_own_event, except: [:submit_registration, :show, :index]
+  #before_action :ensure_own_event, except: [:submit_registration, :show, :index]
 
     def new
       @event = Event.new
     end
 
     def create
-      @event = current_user.event.build(event_params)
+      @event = current_user.events.build(event_params)
       if @event.save
         flash[:message] = "Event Created Successfully."
         redirect_to event_path(@event)
@@ -27,7 +27,7 @@ class EventsController < ApplicationController
     def update
       @event = Event.find(params[:id])
     
-      if @event.update(event_prarams)
+      if @event.update(event_params)
         flash[:message] = "Event Updated Successfully."
         redirect_to event_path(@event)
       else
@@ -49,17 +49,19 @@ class EventsController < ApplicationController
     end
 
     def destroy
-      Event.destroy
+      @event = Event.find_by(id: params[:id])
+      @event.destroy
+      redirect_to user_path
     end
 
     private
 
-    def ensure_own_event
-      current_user.id == params[:user_id].to_i && event.user_id == params[:user_id].to_i
-    end
+    #def ensure_own_event
+      #current_user.id == params[:user_id].to_i && event.user_id == params[:user_id].to_i
+    #end
 
     def event_params
-      params.require(:events).permit(:user_id, :event_time, :name, :description, :agenda)
+      params.require(:event).permit(:user_id, :event_time, :name, :description, :agenda)
     end
 
 end

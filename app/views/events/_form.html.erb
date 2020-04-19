@@ -1,22 +1,25 @@
-<h1>Create Event</h1>
-
 <%= form_for @event do |f| %>
-  <%= f.label :event_time %>
-  <%= f.text_field :event_time %>
-  <br>
-  <br>
+<% f.hidden_field :user_id %>
+  <h3>Name</h3>
   <%= f.label :name %>
   <%= f.text_field :name %>
-   <br>
-   <br>
-   <%= f.label :description %>
-   <%= f.text_field :description %>
   <br>
   <br>
-   <%= f.label :agenda %>
-   <%= f.text_field :agenda %>
-<br>
-<br>
+  <h3>Event Time</h3>
+  <%= f.label :event_time %>
+  <%= f.datetime_field :event_time %>
+  <br>
+  <br>
+  <h3>Description</h3>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <br>
+  <br>
+  <h3>Agenda</h3>
+  <%= f.label :agenda %>
+  <%= f.text_field :agenda %>
+  <br>
+  <br>
   <%= f.submit %>
 
 <% end %>
