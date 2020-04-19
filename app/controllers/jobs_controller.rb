@@ -50,8 +50,8 @@ class JobsController < ApplicationController
     end
 
     def destroy
-      @event = Event.find_by(id: params[:id])
-      @event.destroy
+      @job = Job.find_by(id: params[:id])
+      @job.destroy
       redirect_to user_path(current_user)
     end
 

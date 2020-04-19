@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-  #before_action :ensure_own_event, except: [:submit_registration, :show, :index]
+  before_action :ensure_own_event, except: [:submit_registration, :show, :index]
+  before_action :edit_own_events_only, only: [:edit, :update, :destroy]
 
     def new
       @event = Event.new
@@ -45,23 +46,33 @@ class EventsController < ApplicationController
         flash[:message] = "Successfuly Registered."
       else
         flash[:error] = "Unable to Submit Registration, Please Try Again."
+        redirect_to event_path(params[:event_id])
       end
     end
 
     def destroy
       @event = Event.find_by(id: params[:id])
       @event.destroy
-      redirect_to user_path
+      redirect_to user_path(current_user)
     end
 
     private
 
-    #def ensure_own_event
-      #current_user.id == params[:user_id].to_i && event.user_id == params[:user_id].to_i
-    #end
+    def ensure_own_event
+      current_user.id == params[:user_id].to_i && event.user_id == params[:user_id].to_i
+    end
 
     def event_params
       params.require(:event).permit(:user_id, :event_time, :name, :description, :agenda)
+    end
+
+    def edit_own_events_only
+      @event = Event.find_by(id: params[:id])
+      current_user.id == @event.user_id
+      if current_user.id != @event.user_id
+        flash[:error] = "You Can Only Edit Your Own Events."
+        redirect_to root_path
+      end
     end
 
 end

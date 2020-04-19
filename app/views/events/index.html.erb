@@ -1,1 +1,5 @@
 shows list of all events, with selectors for filtering
+
+<% Event.all.each do |e| %>
+<%= e.name %>
+<% end %>
