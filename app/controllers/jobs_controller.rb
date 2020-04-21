@@ -40,7 +40,7 @@ class JobsController < ApplicationController
     def submit_application
       if params[:job_id].present? && JobApplication.create({:job_id => params[:job_id], :user_id => current_user.id})
         flash[:message] = "Successfuly Applied."
-        redirect_to @job
+        redirect_to user_path(@user)
       else
         flash[:error] = "Unable to Submit Job Application, Please Try Again."
         redirect_to 
