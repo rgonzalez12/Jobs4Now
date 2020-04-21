@@ -1,4 +1,9 @@
 <%= form_for @job do |f| %>
+  <h3>Job Title<h3>
+  <%= f.label :name %>
+  <%= f.text_area :name %>
+  <br>
+  <br>
   <h3>Description</h3>
   <%= f.label :description %>
   <%= f.text_area :description %>
@@ -17,6 +22,11 @@
   <h3>Duration</h3>
   <%= f.label :duration %>
   <%= f.text_field :duration %>
+  <br>
+  <br>
+  <h3>Schedule</h3>
+  <%= f.label :schedule %>
+  <%= f.text_field :schedule %>
   <br>
   <br>
   <h3>Field of Work</h3>

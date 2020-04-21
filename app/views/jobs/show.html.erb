@@ -1,22 +1,41 @@
 displays job info, contact information and number of applicants, ability to apply for job with profile info
 <br>
 <br>
+<h3>Title</h3>
+<%= @job.name %>
+<br>
+<br>
+<h3>Job Description</h3>
 <%= @job.description %>
 <br>
 <br>
+<h3>Requirements</h3>
 <%= @job.requirements %>
 <br>
 <br>
+<h3>Compensation</h3>
 <%= @job.compensation %>
 <br>
 <br>
+<h3>Duration</h3>
 <%= @job.duration %>
 <br>
 <br>
+<h3>Schedule</h3>
 <%= @job.schedule %>
 <br>
 <br>
+<h3>Field of Work</h3>
 <%= @job.field_of_work %>
 <br>
 <br>
+<h3>Contact Info</h3>
 <%= @job.contact_info %>
+<br>
+<br>
+<% if current_user.id == @job.user_id %>
+<%= button_to 'Edit Job', edit_job_path(@job), class: 'btn btn-danger', method: :get %>
+<%= button_to 'Delete Job', job_path(@job), class: 'btn btn-danger', method: :delete %>
+<% else %>
+<%= button_to 'Submit Application', submit_application_path(@job), class: 'btn btn-danger', method: :post %>
+<% end %>

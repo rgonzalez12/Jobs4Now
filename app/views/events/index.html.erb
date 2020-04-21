@@ -1,5 +1,8 @@
 shows list of all events, with selectors for filtering
-
+<br>
+<br>
 <% Event.all.each do |e| %>
-<%= e.name %>
+<%= link_to e.name, event_path(e) %>
+<br>
+<br>
 <% end %>

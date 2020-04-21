@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
-  #before_action :ensure_own_job, except: [:submit_application, :show, :index]
+  before_action :ensure_own_job, except: [:submit_application, :show, :index]
+  before_action :edit_own_jobs_only, only: [:edit, :update, :destroy]
 
     def new
       @job = Job.new
@@ -39,9 +40,10 @@ class JobsController < ApplicationController
     def submit_application
       if params[:job_id].present? && JobApplication.create({:job_id => params[:job_id], :user_id => current_user.id})
         flash[:message] = "Successfuly Applied."
+        redirect_to @job
       else
         flash[:error] = "Unable to Submit Job Application, Please Try Again."
-        redirect_to :index
+        redirect_to 
       end
     end
 
@@ -57,14 +59,21 @@ class JobsController < ApplicationController
 
     private
 
-    #def ensure_own_job
-      #current_user.id == params[:user_id].to_i && job.user_id == params[:user_id].to_i
-    #end
-
-    def job_params
-      params.require(:job).permit(:user_id, :description, :requirements, :compensation, :duration, :schedule, :field_of_work, :contact_info)
+    def ensure_own_job
+      current_user.id == params[:user_id].to_i && job.user_id == params[:user_id].to_i
     end
 
-    #might be job vs. jobs
+    def job_params
+      params.require(:job).permit(:user_id, :description, :requirements, :compensation, :duration, :schedule, :field_of_work, :contact_info, :name)
+    end
+
+    def edit_own_jobs_only
+      @job = Job.find_by(id: params[:id])
+      current_user.id == @job.user_id
+      if current_user.id != @job.user_id
+        flash[:error] = "You Can Only Edit Your Own Jobs."
+        redirect_to root_path
+      end
+    end
 
 end

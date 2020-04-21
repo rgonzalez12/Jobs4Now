@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_14_234252) do
+ActiveRecord::Schema.define(version: 2020_04_21_190025) do
 
   create_table "event_registrations", force: :cascade do |t|
     t.integer "user_id"
@@ -47,9 +47,9 @@ ActiveRecord::Schema.define(version: 2020_04_14_234252) do
     t.string "schedule"
     t.string "field_of_work"
     t.string "contact_info"
-    t.boolean "completed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
   end
 
   create_table "mastery", force: :cascade do |t|
@@ -78,7 +78,6 @@ ActiveRecord::Schema.define(version: 2020_04_14_234252) do
     t.string "phone_number"
     t.string "address"
     t.string "bio"
-    t.boolean "verified"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "resume"
