@@ -1,0 +1,4 @@
+ <% @user.jobs.each do |f| %>
+ <br>
+ <%= link_to f.name, job_path(f) %>
+ <% end %>

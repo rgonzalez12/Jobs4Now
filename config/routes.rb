@@ -15,6 +15,5 @@ Rails.application.routes.draw do
 
   resources :events
 
-
   match '/auth/github/callback', to: 'sessions#create', via: [:get, :post]
 end

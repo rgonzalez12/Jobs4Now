@@ -1,3 +1,4 @@
+<%= render partial: "layouts/errors", locals: {object: @job} %>
 <h1>Edit/Delete Job</h1>
 <%= render 'form' %>
 <%= button_to 'Delete Job', job_path(@job), method: :delete %>

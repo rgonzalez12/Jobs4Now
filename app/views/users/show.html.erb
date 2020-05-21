@@ -1,12 +1,20 @@
 <h1>Welcome, <%= @user.first_name %>!</h1>
 
   
+  <%= link_to "Find a Job", jobs_path %>
+  <br>
+  <%= link_to "Find an Event", events_path %>
+  <br>
   <%= link_to "Create a Job", new_job_path %>
   <br>
   <%= link_to "Create an Event", new_event_path %>
   <br>
-  <%= link_to "Find a Job", jobs_path %>
+  <%= link_to "Hosted Jobs", jobs_path %>
   <br>
-  <%= link_to "Find an Event", events_path %>
+  <%= link_to "Hosted Events", events_path  %>
+  <br>
+  <%= link_to "Active Applications", jobs_path %>
+  <br>
+  <%= link_to "Active Event Registrations", events_path %>
   <br>
   <%= link_to "Edit Profile", edit_user_path %>
