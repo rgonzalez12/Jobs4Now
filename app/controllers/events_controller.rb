@@ -52,8 +52,14 @@ class EventsController < ApplicationController
 
     def destroy
       @event = Event.find_by(id: params[:id])
-      @event.destroy
-      redirect_to user_path(current_user)
+
+      if @event.destroy
+        flash[:message] = "Event Deleted Successfully."
+        redirect_to user_path(current_user)
+      else
+        flash[:error] = "Unable to Delete Event, Please Try Again."
+        render :edit
+      end
     end
 
     private
