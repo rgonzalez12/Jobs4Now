@@ -70,7 +70,7 @@ class JobsController < ApplicationController
     end
 
     def job_params
-      params.require(:job).permit(:user_id, :description, :requirements, :compensation, :duration, :schedule, :field_of_work, :contact_info, :name)
+      params.require(:job).permit(:user_id, :description, :requirements, :compensation, :duration, :schedule, :field_of_work, :contact_info, :name, :location)
     end
 
     def edit_own_jobs_only
