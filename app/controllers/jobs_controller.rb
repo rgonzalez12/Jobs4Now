@@ -18,9 +18,14 @@ class JobsController < ApplicationController
     end
 
     def index
-      @job = Job.all
+      @hosted_jobs = current_user.jobs
+      @job = (Job.all) - @hosted_jobs
     end
 
+    def hosted_jobs
+      @hosted_jobs = current_user.jobs
+    end
+      
     def edit
       @job = Job.find(params[:id])
     end

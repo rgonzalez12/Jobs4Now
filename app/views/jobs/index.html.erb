@@ -1,7 +1,7 @@
 shows list of all jobs, with selectors for filtering
 <br>
 <br>
-<% Job.all.each do |j| %>
+<% @jobs.all.each do |j| %>
 <%= link_to j.name, job_path(j) %>
 <br>
 <br>

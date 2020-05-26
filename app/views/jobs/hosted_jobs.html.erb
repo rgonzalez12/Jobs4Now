@@ -1,0 +1,6 @@
+<h2> Hosted Jobs </h2>
+<% @hosted_jobs.all.each do |j| %>
+<%= link_to j.name, job_path(j) %>
+<br>
+<br>
+<% end %>

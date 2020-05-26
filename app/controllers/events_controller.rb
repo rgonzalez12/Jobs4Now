@@ -21,6 +21,10 @@ class EventsController < ApplicationController
       @event = Event.all
     end
 
+    def hosted_events
+      @hosted_events = current_user.events
+    end
+
     def edit
       @event = Event.find(params[:id])
     end

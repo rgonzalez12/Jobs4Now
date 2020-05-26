@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   post '/submit_application/:job_id' => 'jobs#submit_application', as: 'submit_application'
   post '/submit_registration/:event_id' => 'events#submit_registration', as: 'submit_registration'
 
+  get '/hosted-jobs' => 'jobs#hosted_jobs', as: 'hosted_jobs'
+  get '/hosted-events' => 'events#hosted_events', as: 'hosted_events'
+
   resources :users
 
   resources :jobs
