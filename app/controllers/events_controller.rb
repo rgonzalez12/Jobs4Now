@@ -45,15 +45,6 @@ class EventsController < ApplicationController
       @event = Event.find_by(id: params[:id])
     end
 
-    def submit_registration
-      if params([:event_id]).present? && EventRegistration.create({:event_id => params[:event_id], :user_id => current_user.id})
-        flash[:message] = "Successfuly Registered."
-      else
-        flash[:error] = "Unable to Submit Registration, Please Try Again."
-        redirect_to event_path(params[:event_id])
-      end
-    end
-
     def destroy
       @event = Event.find_by(id: params[:id])
 
