@@ -1,6 +1,4 @@
-shows list of all events, with selectors for filtering
-<br>
-<br>
+<h2>Upcoming Events</h2>
 <% Event.all.each do |e| %>
 <%= link_to e.name, event_path(e) %>
 <br>
