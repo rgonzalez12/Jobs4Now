@@ -39,16 +39,17 @@ class UsersController < ApplicationController
     private
 
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :phone_number, :address, :bio, :resume, :cover_letter)
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :phone_number, :address, :bio, :resume, :cover_letter)
     end
 
     def edit_own_profile_only
-      @user = User.find_by_id(params[:id])
+      @user = User.find_by(params[:id])
 
-      if current_user.id == @user.id
-        render :show
-      else
-        redirect_to user_path(current_user)
+      @job = Job.find_by(id: params[:id])
+      current_user.id == @user.id
+      if current_user.id != @user.id
+        flash[:error] = "You Can Only Edit Your Own Jobs."
+        redirect_to root_path
       end
     end
 

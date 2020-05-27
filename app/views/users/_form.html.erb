@@ -1,37 +1,41 @@
 <%= form_for @user do |f| %>
-  <%= f.label :first_name %>
+  <%= f.label :first_name %>:
   <%= f.text_field :first_name %>
   <br>
   <br>
-  <%= f.label :last_name %>
+  <%= f.label :last_name %>:
   <%= f.text_field :last_name %>
   <br>
   <br>
-  <%= f.label :email %>
+  <%= f.label :email %>:
   <%= f.email_field :email %>
   <br>
   <br>
-  <%= f.label :password %>
+  <%= f.label :password %>:
   <%= f.password_field :password %>
   <br>
   <br>
-  <%= f.label :phone_number %>
+  <%=f.label :password_confirmation %>:
+  <%=f.password_field :password_confirmation %>
+  <br>
+  <br>
+  <%= f.label :phone_number %>:
   <%= f.text_field :phone_number %>
   <br>
   <br>
-  <%= f.label :address %>
+  <%= f.label :address %>:
   <%= f.text_field :address %>
   <br>
   <br>
-  <%= f.label :bio %>
+  <%= f.label :bio %>:
   <%= f.text_area :bio %>
   <br>
   <br>
-  <%= f.label :resume %>
+  <%= f.label :resume %>:
   <%= f.text_area :resume %>
   <br>
   <br>
-  <%= f.label :cover_letter %>
+  <%= f.label :cover_letter %>:
   <%= f.text_area :cover_letter%>
   <br>
   <br>

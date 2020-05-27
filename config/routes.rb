@@ -12,11 +12,15 @@ Rails.application.routes.draw do
   get '/hosted-jobs' => 'jobs#hosted_jobs', as: 'hosted_jobs'
   get '/hosted-events' => 'events#hosted_events', as: 'hosted_events'
 
-  resources :users
+  resources :users do
+   resource :applications
+   resource :registrations
+  end
 
   resources :jobs
 
   resources :events
 
   match '/auth/github/callback', to: 'sessions#create', via: [:get, :post]
+  get '/auth/github/callback', to: 'sessions#github_login'
 end

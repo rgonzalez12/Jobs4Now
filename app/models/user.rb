@@ -10,6 +10,7 @@ class User < ApplicationRecord
     /x
 
     validates :password, format: PASSWORD_REQ
+    validates :password, confirmation: { case_sensitive: true }
     validates :email, uniqueness: true
     validates :first_name, presence: true
     validates :last_name, presence: true
