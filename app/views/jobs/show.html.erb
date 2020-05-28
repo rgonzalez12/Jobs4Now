@@ -34,5 +34,5 @@
 <%= button_to 'Edit Job', edit_job_path(@job), class: 'btn btn-danger', method: :get %>
 <%= button_to 'Delete Job', job_path(@job), class: 'btn btn-danger', method: :delete %>
 <% else %>
-<%= button_to 'Submit Application', submit_application_path(@job), class: 'btn btn-danger', method: :post %>
+<%= button_to 'Apply Now', submit_application_path(@job), class: 'btn btn-danger', method: :post %>
 <% end %>

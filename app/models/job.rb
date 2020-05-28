@@ -11,5 +11,6 @@ class Job < ApplicationRecord
     validates :schedule, presence: :true
     validates :field_of_work, presence: :true
     validates :contact_info, presence: :true
+    validates :location, presence: :true
 
 end
