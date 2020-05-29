@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_26_191001) do
+ActiveRecord::Schema.define(version: 2020_05_29_164417) do
 
   create_table "event_registrations", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "event_id"
-    t.index ["event_id", "user_id"], name: "index_event_registrations_on_event_id_and_user_id", unique: true
+    t.integer "attendee_id"
+    t.integer "host_id"
+    t.index ["event_id"], name: "index_event_registrations_on_event_id_and_user_id", unique: true
   end
 
   create_table "events", force: :cascade do |t|
@@ -32,8 +33,9 @@ ActiveRecord::Schema.define(version: 2020_05_26_191001) do
 
   create_table "job_applications", force: :cascade do |t|
     t.integer "job_id"
-    t.integer "user_id"
-    t.index ["job_id", "user_id"], name: "index_job_applications_on_job_id_and_user_id", unique: true
+    t.integer "applicant_id"
+    t.integer "employer_id"
+    t.index ["job_id"], name: "index_job_applications_on_job_id_and_user_id", unique: true
   end
 
   create_table "jobs", force: :cascade do |t|

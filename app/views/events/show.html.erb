@@ -15,8 +15,15 @@
 <br>
 <br>
 <% if current_user.id == @event.user_id %>
-<%= button_to 'Edit Event', edit_event_path(@event), class: 'btn btn-danger', method: :get %>
-<%= button_to 'Delete Event', event_path(@event), class: 'btn btn-danger', method: :delete %>
+  <%= button_to 'Edit Event', edit_event_path(@event), class: 'btn btn-danger', method: :get %>
+  <%= button_to 'Delete Event', event_path(@event), class: 'btn btn-danger', method: :delete %>
+<br>
+<br>
+
+<h2> Applicants <h2>
+
 <% else %>
+
 <%= button_to 'Submit Registration', submit_registration_path(@event), class: 'btn btn-danger', method: :post %>
+
 <% end %>

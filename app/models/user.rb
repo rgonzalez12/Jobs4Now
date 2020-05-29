@@ -16,11 +16,15 @@ class User < ApplicationRecord
     validates :last_name, presence: true
     validates :phone_number, length: { in: 5..15 }
     validates :address, presence: true
+
+    has_many :attendees, foreign_key: "attendee_id", class_name: "EventRegistration"
+    has_many :hosts, foreign_key: "host_id", class_name: "EventRegistration"
+    has_many :employers, foreign_key: "employer_id", class_name: "JobApplication"
+    has_many :applicants, foreign_key: "applicant_id", class_name: "JobApplication"
+
     
-    has_many :job_applications
     has_many :jobs
     has_many :reviews
-    has_many :event_registrations
     has_many :events
     has_many :masteries
     has_many :skills, through: :masteries
