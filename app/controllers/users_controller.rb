@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :verified, :only => [:new, :create]
-  before_action :edit_own_profile_only, :only => [:edit, :update, :show]
+  before_action :edit_own_profile_only, :only => [:edit, :update]
     
     def new
       @user = User.new
@@ -45,10 +45,9 @@ class UsersController < ApplicationController
     def edit_own_profile_only
       @user = User.find_by(params[:id])
 
-      @job = Job.find_by(id: params[:id])
       current_user.id == @user.id
       if current_user.id != @user.id
-        flash[:error] = "You Can Only Edit Your Own Jobs."
+        flash[:error] = "You Can Only Edit Your Own Data."
         redirect_to root_path
       end
     end

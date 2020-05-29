@@ -19,7 +19,7 @@ class JobsController < ApplicationController
 
     def index
       @hosted_jobs = current_user.jobs
-      @job = (Job.all) - @hosted_jobs
+      @job = (Job.all.posting_date) - @hosted_jobs
     end
 
     def hosted_jobs
@@ -65,7 +65,7 @@ class JobsController < ApplicationController
     end
 
     def job_params
-      params.require(:job).permit(:user_id, :description, :requirements, :compensation, :duration, :schedule, :field_of_work, :contact_info, :name, :location)
+      params.require(:job).permit(:user_id, :employer_name, :description, :requirements, :compensation, :duration, :schedule, :field_of_work, :contact_info, :name, :location)
     end
 
     def edit_own_jobs_only

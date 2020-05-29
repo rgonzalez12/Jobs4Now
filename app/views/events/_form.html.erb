@@ -1,5 +1,9 @@
 <%= form_for @event do |f| %>
 <% f.hidden_field :user_id %>
+  <h3>Host<h3>
+  <%= f.text_area :employer_name %>
+  <br>
+  <br>
   <h3>Name</h3>
   <%= f.label :name %>
   <%= f.text_field :name %>

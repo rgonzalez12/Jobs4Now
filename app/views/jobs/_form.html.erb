@@ -1,4 +1,8 @@
 <%= form_for @job do |f| %>
+  <h3>Employer<h3>
+  <%= f.text_field :employer_name %>
+  <br>
+  <br>
   <h3>Job Title<h3>
   <%= f.text_area :name %>
   <br>
@@ -19,12 +23,12 @@
   <%= f.text_field :compensation %>
   <br>
   <br>
-  <h3>Duration</h3>
-  <%= f.text_field :duration %>
-  <br>
-  <br>
   <h3>Schedule</h3>
   <%= f.text_field :schedule %>
+  <br>
+  <br>
+  <h3>Schedule Type</h3>
+  <%= f.select :duration, ['Full-Time/Permanent', 'Part-Time/Permanent', 'Temporary/Contract', 'Internship', 'Apprenticeship']%>
   <br>
   <br>
   <h3>Field of Work</h3>

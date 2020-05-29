@@ -1,4 +1,8 @@
-<h3>Title</h3>
+<h3>Company</h3>
+<%= @job.employer_name %>
+<br>
+<br>
+<h3>Job Title</h3>
 <%= @job.name %>
 <br>
 <br>
@@ -14,12 +18,12 @@
 <%= @job.compensation %>
 <br>
 <br>
-<h3>Duration</h3>
-<%= @job.duration %>
-<br>
-<br>
 <h3>Schedule</h3>
 <%= @job.schedule %>
+<br>
+<br>
+<h3>Schedule Type</h3>
+<%= @job.duration %>
 <br>
 <br>
 <h3>Field of Work</h3>
@@ -31,8 +35,15 @@
 <br>
 <br>
 <% if current_user.id == @job.user_id %>
-<%= button_to 'Edit Job', edit_job_path(@job), class: 'btn btn-danger', method: :get %>
-<%= button_to 'Delete Job', job_path(@job), class: 'btn btn-danger', method: :delete %>
+  <%= button_to 'Edit Job', edit_job_path(@job), class: 'btn btn-danger', method: :get %>
+  <%= button_to 'Delete Job', job_path(@job), class: 'btn btn-danger', method: :delete %>
+  <br>
+  <br>
+
+  <h2> Applicants </h2>
+
 <% else %>
+
 <%= button_to 'Apply Now', submit_application_path(@job), class: 'btn btn-danger', method: :post %>
+
 <% end %>

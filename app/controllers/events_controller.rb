@@ -64,7 +64,7 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:user_id, :event_time, :name, :description, :agenda, :location)
+      params.require(:event).permit(:user_id, :employer_name, :event_time, :name, :description, :agenda, :location)
     end
 
     def edit_own_events_only

@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   get '/hosted-events' => 'events#hosted_events', as: 'hosted_events'
 
   resources :users do
-   resource :applications
-   resource :registrations
+   resource :applications, only: [:show, :index, :destroy]
+   resource :registrations, only: [:show, :index, :destroy]
   end
 
   resources :jobs

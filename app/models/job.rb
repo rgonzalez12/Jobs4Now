@@ -3,7 +3,8 @@ class Job < ApplicationRecord
     has_many :job_applications
     has_one :review
 
-   
+    scope :posting_date, -> { order('created_at desc') }
+
     validates :description, presence: :true
     validates :requirements, presence: :true
     validates :compensation, presence: :true

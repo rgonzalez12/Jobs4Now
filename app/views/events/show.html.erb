@@ -1,26 +1,30 @@
-<h1>Event Name:</h1>
+<h3>Host</h3>
+<%= @event.employer_name %>
+<br>
+<br>
+<h3>Event Name</h3>
 <%= @event.name %>
 <br>
 <br>
-<h3>Description:</h3>
+<h3>Description</h3>
 <%= @event.description %>
 <br>
 <br>
-<h3>Agenda:</h3>
+<h3>Agenda</h3>
 <%= @event.agenda %>
 <br>
 <br>
-<h3>Event Time:</h3>
+<h3>Event Time</h3>
 <%= @event.event_time %>
 <br>
 <br>
 <% if current_user.id == @event.user_id %>
   <%= button_to 'Edit Event', edit_event_path(@event), class: 'btn btn-danger', method: :get %>
   <%= button_to 'Delete Event', event_path(@event), class: 'btn btn-danger', method: :delete %>
-<br>
-<br>
+  <br>
+  <br>
 
-<h2> Applicants <h2>
+  <h3> Current Registrants </h3>
 
 <% else %>
 
