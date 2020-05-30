@@ -13,5 +13,10 @@ class Job < ApplicationRecord
     validates :field_of_work, presence: :true
     validates :contact_info, presence: :true
     validates :location, presence: :true
+    validates :employer_name, presence: :true
+
+    def add_application_to_job(applicant)
+      JobApplication.create(employer_id: user.id, applicant_id: applicant.id, job_id: id)
+    end
 
 end

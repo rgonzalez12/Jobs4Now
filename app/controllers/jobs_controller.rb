@@ -8,6 +8,7 @@ class JobsController < ApplicationController
 
     def create
       @job = current_user.jobs.build(job_params)
+
       if @job.save
         flash[:message] = "Job Created Successfully."
         redirect_to job_path(@job)
@@ -44,6 +45,18 @@ class JobsController < ApplicationController
 
     def show 
       @job = Job.find_by(id: params[:id])
+    end
+
+    def submit_application
+      @job = Job.find(params[:job_id])
+
+      if @job.add_application_to_job(current_user)
+        flash[:message] = "Applied For Job Successfully."
+        redirect_to job_path(@job)
+      else
+        flash[:error] = "Unable to Submit Application, Please Try Again."
+        redirect_to job_path(@job)
+      end
     end
 
     def destroy

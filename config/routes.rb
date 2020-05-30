@@ -13,14 +13,13 @@ Rails.application.routes.draw do
   get '/hosted-events' => 'events#hosted_events', as: 'hosted_events'
 
   resources :users do
-   resource :applications, only: [:show, :index, :destroy]
-   resource :registrations, only: [:show, :index, :destroy]
+   resource :applications, only: [:show, :index, :destroy], controller: :jobs
+   resource :registrations, only: [:show, :index, :destroy], controller: :events
   end
 
   resources :jobs
 
   resources :events
 
-  match '/auth/github/callback', to: 'sessions#create', via: [:get, :post]
   get '/auth/github/callback', to: 'sessions#github_login'
 end

@@ -41,6 +41,11 @@
   <br>
 
   <h2> Applicants </h2>
+  <br>
+  <br>
+  <% @job.job_applications.each do |job_application| %>
+   <%= job_application.applicant.first_name %>
+   <% end %>
 
 <% else %>
 
