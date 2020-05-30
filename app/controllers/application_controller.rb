@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     private
 
     def verified
-      redirect_to '/' unless logged_in?
+      #redirect_to '/' unless logged_in?
     end
   
     def logged_in?

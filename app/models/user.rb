@@ -17,12 +17,12 @@ class User < ApplicationRecord
     validates :phone_number, length: { in: 5..15 }
     validates :address, presence: true
 
-    has_many :attendees, foreign_key: "attendee_id", class_name: "EventRegistration"
+    has_many :registrations, foreign_key: "attendee_id", class_name: "EventRegistration"
     has_many :hosts, foreign_key: "host_id", class_name: "EventRegistration"
     has_many :employers, foreign_key: "employer_id", class_name: "JobApplication"
-    has_many :applicants, foreign_key: "applicant_id", class_name: "JobApplication"
+    has_many :applications, foreign_key: "applicant_id", class_name: "JobApplication"
+    has_many :jobs_applied, through: :applications, source: :job
 
-    
     has_many :jobs
     has_many :reviews
     has_many :events
