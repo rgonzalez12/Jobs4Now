@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     end
 
     def edit_own_profile_only
-      @user = User.find_by(params[:id])
+      @user = User.find_by(id: params[:id])
 
       current_user.id == @user.id
       if current_user.id != @user.id

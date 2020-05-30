@@ -1,31 +1,26 @@
 <%= form_for @event do |f| %>
 <% f.hidden_field :user_id %>
   <h3>Host<h3>
-  <%= f.text_area :employer_name %>
+  <%= f.text_area :host_name %>
   <br>
   <br>
   <h3>Name</h3>
-  <%= f.label :name %>
   <%= f.text_field :name %>
   <br>
   <br>
   <h3>Event Time</h3>
-  <%= f.label :event_time %>
   <%= f.datetime_field :event_time %>
   <br>
   <br>
-  <h3>Location</h3>
-  <%= f.label :location %>
+  <h3>Location</h3> 
   <%= f.text_field :location %>
   <br>
   <br>
   <h3>Description</h3>
-  <%= f.label :description %>
   <%= f.text_area :description %>
   <br>
   <br>
   <h3>Agenda</h3>
-  <%= f.label :agenda %>
   <%= f.text_area :agenda %>
   <br>
   <br>

@@ -45,6 +45,18 @@ class EventsController < ApplicationController
       @event = Event.find_by(id: params[:id])
     end
 
+    def submit_registration
+      @event = Event.find(params[:event_id])
+
+      if @event.add_registration_to_event(current_user)
+        flash[:message] = "Registered for Event Successfully."
+        redirect_to event_path(@event)
+      else
+        flash[:error] = "Unable to Submit Registration, Please Try Again."
+        redirect_to event_path(@event)
+      end
+    end
+
     def destroy
       @event = Event.find_by(id: params[:id])
 
@@ -64,7 +76,7 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:user_id, :employer_name, :event_time, :name, :description, :agenda, :location)
+      params.require(:event).permit(:user_id, :host_name, :event_time, :name, :description, :agenda, :location)
     end
 
     def edit_own_events_only

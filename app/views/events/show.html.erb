@@ -1,5 +1,5 @@
 <h3>Host</h3>
-<%= @event.employer_name %>
+<%= @event.host_name %>
 <br>
 <br>
 <h3>Event Name</h3>
@@ -25,9 +25,24 @@
   <br>
 
   <h3> Current Registrants </h3>
+  <br>
+  <br>
+  <% @event.event_registrations.each do |event_registration| %>
+  <h2>Name</h2>
+   <%= event_registration.attendee.first_name %> <%= event_registration.attendee.last_name %> 
+   <br>
+   <br>
+   <h2>Email</h2>
+   <%= event_registration.attendee.email %>
+   <br>
+   <h2>Phone Number</h2>
+    <%= event_registration.attendee.phone_number %>
+   <% end %>
 
 <% else %>
 
+  <% unless current_user.events_registered.include?(@event) %>
+  
 <%= button_to 'Submit Registration', submit_registration_path(@event), class: 'btn btn-danger', method: :post %>
-
+  <% end %>
 <% end %>

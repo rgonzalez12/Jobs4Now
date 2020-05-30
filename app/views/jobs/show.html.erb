@@ -52,5 +52,5 @@
   <% unless current_user.jobs_applied.include?(@job) %>
 
 <%= button_to 'Apply Now', submit_application_path(@job), class: 'btn btn-danger', method: :post %>
-<% end %>
+  <% end %>
 <% end %>

@@ -22,6 +22,7 @@ class User < ApplicationRecord
     has_many :employers, foreign_key: "employer_id", class_name: "JobApplication"
     has_many :applications, foreign_key: "applicant_id", class_name: "JobApplication"
     has_many :jobs_applied, through: :applications, source: :job
+    has_many :events_registered, through: :registrations, source: :event
 
     has_many :jobs
     has_many :reviews

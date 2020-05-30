@@ -1,1 +1,4 @@
 <h2>My Registered Events</h2>
+<% @events_registered.each do |event| %>
+  <%= link_to event.name, event_path(event) %>
+<% end %>
