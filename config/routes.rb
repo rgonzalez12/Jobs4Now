@@ -21,5 +21,7 @@ Rails.application.routes.draw do
 
   resources :events
 
-  get '/auth/github/callback', to: 'sessions#github_login'
+  get 'auth/facebook/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
+
 end

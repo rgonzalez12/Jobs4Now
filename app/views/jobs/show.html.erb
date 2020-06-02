@@ -44,7 +44,18 @@
   <br>
   <br>
   <% @job.job_applications.each do |job_application| %>
-   <%= job_application.applicant.first_name %>
+  <table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th> 
+    <th>Phone Number</th>
+  </tr>
+  <tr>
+    <td><%= job_application.applicant.name %></td>
+    <td><%= job_application.applicant.email %></td>
+    <td><%= job_application.applicant.phone_number %></td>
+  </tr>
+</table>
    <% end %>
 
 <% else %>
@@ -54,3 +65,21 @@
 <%= button_to 'Apply Now', submit_application_path(@job), class: 'btn btn-danger', method: :post %>
   <% end %>
 <% end %>
+
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>

@@ -28,15 +28,18 @@
   <br>
   <br>
   <% @event.event_registrations.each do |event_registration| %>
-  <h2>Name</h2>
-   <%= event_registration.attendee.first_name %> <%= event_registration.attendee.last_name %> 
-   <br>
-   <br>
-   <h2>Email</h2>
-   <%= event_registration.attendee.email %>
-   <br>
-   <h2>Phone Number</h2>
-    <%= event_registration.attendee.phone_number %>
+  <table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th> 
+    <th>Phone Number</th>
+  </tr>
+  <tr>
+    <td><%= event_registration.attendee.name %></td>
+    <td><%= event_registration.attendee.email %></td>
+    <td><%= event_registration.attendee.phone_number %></td>
+  </tr>
+</table>
    <% end %>
 
 <% else %>
@@ -46,3 +49,21 @@
 <%= button_to 'Submit Registration', submit_registration_path(@event), class: 'btn btn-danger', method: :post %>
   <% end %>
 <% end %>
+
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>

@@ -24,8 +24,9 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
 gem 'omniauth'
-gem 'omniauth-github'
+gem 'omniauth-facebook'
 gem 'pry'
+gem 'figaro'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

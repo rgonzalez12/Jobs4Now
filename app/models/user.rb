@@ -9,13 +9,11 @@ class User < ApplicationRecord
     (?=.*[[:^alnum:]])
     /x
 
+
+    validates :email, presence: true, uniqueness: true
+    validates :name, presence: true
     validates :password, format: PASSWORD_REQ
     validates :password, confirmation: { case_sensitive: true }
-    validates :email, uniqueness: true
-    validates :first_name, presence: true
-    validates :last_name, presence: true
-    validates :phone_number, length: { in: 5..15 }
-    validates :address, presence: true
 
     has_many :registrations, foreign_key: "attendee_id", class_name: "EventRegistration"
     has_many :hosts, foreign_key: "host_id", class_name: "EventRegistration"
@@ -29,5 +27,19 @@ class User < ApplicationRecord
     has_many :events
     has_many :masteries
     has_many :skills, through: :masteries
+
+    def self.create_with_omniauth(auth)
+      user = find_or_create_by(uid: auth['uid'], provider: auth['provider'])
+      user.email = "#{auth['uid']}@#{auth['provider']}.com"
+      user.password = auth['uid']
+      user.name = auth['info']['name']
+    
+      if User.exists?(user.id)
+        user
+      else
+        user.save!
+        user
+      end
+    end
 
 end
