@@ -1,4 +1,5 @@
 class JobsController < ApplicationController
+  before_action :set_job, only: [:edit, :update, :show, :destroy]
   before_action :ensure_own_job, except: [:submit_application, :show, :index]
   before_action :edit_own_jobs_only, only: [:edit, :update, :destroy]
 
@@ -28,11 +29,9 @@ class JobsController < ApplicationController
     end
       
     def edit
-      @job = Job.find(params[:id])
     end
 
     def update
-      @job = Job.find(params[:id])
     
       if @job.update(job_params)
         flash[:message] = "Job Updated Successfully."
@@ -44,11 +43,9 @@ class JobsController < ApplicationController
     end
 
     def show 
-      @job = Job.find_by(id: params[:id])
     end
 
     def submit_application
-      @job = Job.find(params[:job_id])
 
       if @job.add_application_to_job(current_user)
         flash[:message] = "Applied For Job Successfully."
@@ -60,7 +57,6 @@ class JobsController < ApplicationController
     end
 
     def destroy
-      @job = Job.find_by(id: params[:id])
 
       if @job.destroy
        flash[:message] = "Job Deleted Successfully."
@@ -72,6 +68,10 @@ class JobsController < ApplicationController
     end
 
     private
+
+    def set_job
+      @job = Job.find_by(id: params[:id])
+    end
 
     def ensure_own_job
       current_user.id == params[:user_id].to_i && job.user_id == params[:user_id].to_i

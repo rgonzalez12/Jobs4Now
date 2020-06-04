@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :set_event, only: [:edit, :update, :show, :destroy]
   before_action :ensure_own_event, except: [:submit_registration, :show, :index]
   before_action :edit_own_events_only, only: [:edit, :update, :destroy]
 
@@ -18,7 +19,7 @@ class EventsController < ApplicationController
     end
 
     def index
-      @event = Event.all
+      @event = Event.all.posting_date
     end
 
     def hosted_events
@@ -26,11 +27,9 @@ class EventsController < ApplicationController
     end
 
     def edit
-      @event = Event.find(params[:id])
     end
 
     def update
-      @event = Event.find(params[:id])
     
       if @event.update(event_params)
         flash[:message] = "Event Updated Successfully."
@@ -42,7 +41,6 @@ class EventsController < ApplicationController
     end
 
     def show
-      @event = Event.find_by(id: params[:id])
     end
 
     def submit_registration
@@ -58,7 +56,6 @@ class EventsController < ApplicationController
     end
 
     def destroy
-      @event = Event.find_by(id: params[:id])
 
       if @event.destroy
         flash[:message] = "Event Deleted Successfully."
@@ -70,6 +67,10 @@ class EventsController < ApplicationController
     end
 
     private
+
+    def set_event
+      @event = Event.find_by(id: params[:id])
+    end
 
     def ensure_own_event
       current_user.id == params[:user_id].to_i && event.user_id == params[:user_id].to_i

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :verified, :only => [:new, :create]
+  before_action :set_user, only: [:edit, :update, :show, :destroy]
   before_action :edit_own_profile_only, :only => [:edit, :update]
     
     def new
@@ -18,14 +18,13 @@ class UsersController < ApplicationController
     end
 
     def edit
-      @user = User.find(params[:id])
     end
 
     def update
-      @user = User.find(params[:id])
       @user.update(user_params)
     
       if @user.save
+        flash[:message] = "Profile Updated Successfully."
         redirect_to @user
       else
         render :edit
@@ -33,10 +32,13 @@ class UsersController < ApplicationController
     end
 
     def show
-      @user = User.find_by_id(params[:id]) 
     end
 
     private
+
+    def set_user
+      @user = User.find_by(id: params[:id])
+    end
 
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :phone_number, :address, :bio, :resume, :cover_letter)
