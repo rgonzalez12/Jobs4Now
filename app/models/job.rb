@@ -1,6 +1,6 @@
 class Job < ApplicationRecord
     belongs_to :user
-    has_many :job_applications
+    has_many :job_applications, dependent: :destroy
     has_one :review
 
     scope :posting_date, -> { order('created_at desc') }

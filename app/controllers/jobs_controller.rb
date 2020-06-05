@@ -46,6 +46,7 @@ class JobsController < ApplicationController
     end
 
     def submit_application
+      @job = Job.find(params[:job_id])
 
       if @job.add_application_to_job(current_user)
         flash[:message] = "Applied For Job Successfully."

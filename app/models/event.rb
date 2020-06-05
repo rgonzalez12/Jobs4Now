@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
     belongs_to :user
-    has_many :event_registrations
+    has_many :event_registrations, dependent: :destroy
 
     scope :posting_date, -> { order('created_at desc') }
 

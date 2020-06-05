@@ -1,6 +1,9 @@
 <h2>Upcoming Events</h2>
 <% Event.all.each do |e| %>
+<br>
+<br>
 <%= link_to e.name, event_path(e) %>
 <br>
 <br>
+<%= e.created_at %>
 <% end %>

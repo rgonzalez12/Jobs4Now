@@ -1,6 +1,10 @@
 <h2>Current Job Openings</h2>
 <% Job.all.each do |j| %>
+<br>
+<br>
 <%= link_to j.name, job_path(j) %>
 <br>
+<br>
+<%= j.created_at %>
 <br>
 <% end %>

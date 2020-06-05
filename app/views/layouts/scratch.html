@@ -1,0 +1,33 @@
+<% @job.job_applications.each do |job_application| %>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Email Address</th>
+        <th scope="col">Phone Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= job_application.applicant.name %></td>
+        <td><%= job_application.applicant.email %></td>
+        <td><%= job_application.applicant.phone_number %></td>
+      </tr>
+    </tbody>
+  </table>
+  <% end %>
+
+  <% @job.job_applications.each do |job_application| %>
+  <table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th> 
+    <th>Phone Number</th>
+  </tr>
+  <tr>
+    <td><%= job_application.applicant.name %></td>
+    <td><%= job_application.applicant.email %></td>
+    <td><%= job_application.applicant.phone_number %></td>
+  </tr>
+</table>
+   <% end %>
