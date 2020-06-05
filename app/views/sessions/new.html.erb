@@ -3,15 +3,15 @@
 <br>
 <br>
 <%=  form_for :user do |f| %>
-    <%= f.label :email %>
+    <%= f.label :email %>:
     <%= f.text_field :email %>
     <br>
     <br>
-    <%= f.label :password %>
+    <%= f.label :password %>:
     <%= f.password_field :password %>
     <br>
     <br>
     <%= f.submit "Login" %>
   <% end %>
-
+<br>
 <%= button_to('Log in with Facebook', '/auth/facebook') %>
