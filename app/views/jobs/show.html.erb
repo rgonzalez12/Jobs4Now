@@ -70,6 +70,12 @@
   <% end %>
 <% end %>
 
+<% if current_user.jobs_applied.include?(@job) %>
+<h2>Your application has been submitted. Good Luck!<h2>
+<% end %>
+
+
+
 <style>
 table {
   font-family: arial, sans-serif;

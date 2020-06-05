@@ -1,5 +1,7 @@
 <h2>Hosted Events</h2>
+
 <% @hosted_events.all.each do |j| %>
+
 <%= link_to j.name, event_path(j) %>
 <br>
 <br>

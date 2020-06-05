@@ -32,7 +32,6 @@ class JobsController < ApplicationController
     end
 
     def update
-    
       if @job.update(job_params)
         flash[:message] = "Job Updated Successfully."
         redirect_to job_path(@job)
@@ -58,7 +57,6 @@ class JobsController < ApplicationController
     end
 
     def destroy
-
       if @job.destroy
        flash[:message] = "Job Deleted Successfully."
        redirect_to user_path(current_user)
@@ -86,7 +84,6 @@ class JobsController < ApplicationController
       @job = Job.find_by(id: params[:id])
       current_user.id == @job.user_id
       if current_user.id != @job.user_id
-        flash[:error] = "You Can Only Edit Your Own Jobs."
         redirect_to root_path
       end
     end

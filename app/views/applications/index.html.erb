@@ -1,7 +1,10 @@
 <h2>My Applications</h2>
 <br>
+
 <% @jobs_applied.each do |job| %>
+
 <br>
   <%= link_to job.name, job_path(job) %>
   <br>
+  
   <% end %>

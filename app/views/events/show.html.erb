@@ -50,6 +50,10 @@
   <% end %>
 <% end %>
 
+<% if current_user.events_registered.include?(@event) %>
+<h2>Your registration has been submitted. We'll see you there!<h2>
+<% end %>
+
 <style>
 table {
   font-family: arial, sans-serif;

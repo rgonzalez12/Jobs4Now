@@ -30,7 +30,6 @@ class EventsController < ApplicationController
     end
 
     def update
-    
       if @event.update(event_params)
         flash[:message] = "Event Updated Successfully."
         redirect_to event_path(@event)
@@ -56,7 +55,6 @@ class EventsController < ApplicationController
     end
 
     def destroy
-
       if @event.destroy
         flash[:message] = "Event Deleted Successfully."
         redirect_to user_path(current_user)
