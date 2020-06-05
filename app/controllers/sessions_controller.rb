@@ -11,13 +11,14 @@ class SessionsController < ApplicationController
       redirect_to edit_user_path(user.id)
     elsif 
       user = User.find_by(email: params[:user][:email])
-      user && user.authenticate(params[:user][:password])
+       if user && user.authenticate(params[:user][:password])
       session[:user_id] = user.id
       redirect_to user_path(user)
     else
       flash[:message] = "Invalid Email or Password, Please Try Again."
       redirect_to "/login"
     end
+   end
   end
 
   def destroy
