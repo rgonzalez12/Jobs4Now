@@ -1,10 +1,14 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:edit, :update, :show, :destroy]
-  before_action :ensure_own_event, except: [:submit_registration, :show, :index]
   before_action :edit_own_events_only, only: [:edit, :update, :destroy]
 
     def new
-      @event = Event.new
+      if params[:user_id]
+        @user = User.find_by_id(params[:user_id])
+        @event = @user.events.build
+      else
+        @event = Event.new
+      end
     end
 
     def create
@@ -68,10 +72,6 @@ class EventsController < ApplicationController
 
     def set_event
       @event = Event.find_by(id: params[:id])
-    end
-
-    def ensure_own_event
-      current_user.id == params[:user_id].to_i && event.user_id == params[:user_id].to_i
     end
 
     def event_params

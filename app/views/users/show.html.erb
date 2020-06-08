@@ -5,9 +5,9 @@
   <br>
   <%= link_to "Find an Event", events_path %>
   <br>
-  <%= link_to "Create a Job", new_job_path %>
+  <%= link_to "Create a Job", new_user_job_path(current_user) %>
   <br>
-  <%= link_to "Create an Event", new_event_path %>
+  <%= link_to "Create an Event", new_user_event_path(current_user) %>
   <br>
   <%= link_to "Hosted Jobs", hosted_jobs_path %>
   <br>

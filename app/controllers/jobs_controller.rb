@@ -1,10 +1,14 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:edit, :update, :show, :destroy]
-  before_action :ensure_own_job, except: [:submit_application, :show, :index]
   before_action :edit_own_jobs_only, only: [:edit, :update, :destroy]
 
     def new
-      @job = Job.new
+      if params[:user_id]
+        @user = User.find_by_id(params[:user_id])
+        @job = @user.jobs.build
+      else
+        @job = Job.new
+      end
     end
 
     def create
@@ -41,7 +45,7 @@ class JobsController < ApplicationController
       end
     end
 
-    def show 
+    def show
     end
 
     def submit_application
@@ -70,10 +74,6 @@ class JobsController < ApplicationController
 
     def set_job
       @job = Job.find_by(id: params[:id])
-    end
-
-    def ensure_own_job
-      current_user.id == params[:user_id].to_i && job.user_id == params[:user_id].to_i
     end
 
     def job_params

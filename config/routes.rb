@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   resources :users do
    resources :applications, only: [:index]
    resources :registrations, only: [:index]
+   resources :jobs, only: [:new, :create, :show]
+   resources :events, only: [:new, :create, :show]
   end
 
   resources :jobs
