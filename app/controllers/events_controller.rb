@@ -11,6 +11,11 @@ class EventsController < ApplicationController
       end
     end
 
+    def event_search
+      @event = Event.search(params[:search])
+      render :index
+    end
+
     def create
       @event = current_user.events.build(event_params)
       if @event.save
@@ -75,7 +80,7 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:user_id, :host_name, :event_time, :name, :description, :agenda, :location)
+      params.require(:event).permit(:user_id, :host_name, :event_time, :name, :description, :agenda, :location, :id)
     end
 
     def edit_own_events_only

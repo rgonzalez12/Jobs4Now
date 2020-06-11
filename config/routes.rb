@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get '/hosted-jobs' => 'jobs#hosted_jobs', as: 'hosted_jobs'
   get '/hosted-events' => 'events#hosted_events', as: 'hosted_events'
 
+  get '/search', to: 'events#event_search'
+
   resources :users do
    resources :applications, only: [:index]
    resources :registrations, only: [:index]

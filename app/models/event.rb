@@ -15,4 +15,17 @@ class Event < ApplicationRecord
       EventRegistration.create(host_id: user.id, attendee_id: attendee.id, event_id: id)
     end
 
+    def self.search(search)
+      if search
+        event = Event.where(name: search)
+        if event
+          event.where(event_id: event)
+        else
+          Event.all
+        end
+      else
+        Event.all
+      end
+    end
+
 end

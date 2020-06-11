@@ -1,4 +1,10 @@
 <h2>Upcoming Events</h2>
+
+<%= form_tag search_path, method: 'get' do %>
+  <%= text_field_tag(:search, params[:search]) %>
+  <%= submit_tag ("Search") %>
+<% end %>
+
 <% Event.all.each do |e| %>
 <br>
 <br>
