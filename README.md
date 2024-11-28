@@ -1,6 +1,6 @@
 # Jobs4Now
 
-Jobs4Now is a job board/event planner application built on Rails 6.
+Jobs4Now is a job board/event planner application built on Rails 8.
 
 
 ## Installation
